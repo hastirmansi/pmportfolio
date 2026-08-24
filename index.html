@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mansi - AI Product Manager Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #2c2c2a;
+            line-height: 1.6;
+            background: #fafaf8;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #0f0f0e;
+                color: #f5f5f0;
+            }
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 3.5rem 0 2.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero .role {
+            font-size: 1.15rem;
+            color: #0F6E56;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .hero .role {
+                color: #5DCAA5;
+            }
+        }
+
+        .hero .positioning {
+            font-size: 1rem;
+            color: #666;
+            font-style: italic;
+            line-height: 1.8;
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .hero .positioning {
+                color: #aaa;
+            }
+        }
+
+        /* Case Studies Grid */
+        .cases-section {
+            margin: 2rem 0;
+        }
+
+        .case-grid {
+            display: grid;
+            gap: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .case-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .case-header {
+                background: #1a1a18;
+                border-color: rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        .case-header:hover {
+            border-color: #0F6E56;
+            box-shadow: 0 2px 8px rgba(15, 110, 86, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .case-header:hover {
+                box-shadow: 0 2px 8px rgba(93, 202, 165, 0.15);
+            }
+        }
+
+        .case-header-content h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.35rem;
+        }
+
+        .case-header-content .meta {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .case-header-content .meta {
+                color: #666;
+            }
+        }
+
+        .expand-icon {
+            color: #0F6E56;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .expand-icon {
+                color: #5DCAA5;
+            }
+        }
+
+        /* Case Detail */
+        .case-detail {
+            display: none;
+            padding: 1.5rem;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            margin-top: -1px;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .case-detail {
+                background: #1a1a18;
+                border-color: rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        .case-detail.active {
+            display: block;
+        }
+
+        .section {
+            margin-bottom: 1.75rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0F6E56;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 0.6rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .section-label {
+                color: #5DCAA5;
+            }
+        }
+
+        .section-content {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .section-content {
+                color: #ccc;
+            }
+        }
+
+        .bullet-point {
+            display: flex;
+            align-items: flex-start;
+            margin: 0.6rem 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .bullet-point::before {
+            content: "→";
+            display: inline-block;
+            margin-right: 0.75rem;
+            color: #0F6E56;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .bullet-point::before {
+                color: #5DCAA5;
+            }
+        }
+
+        .decision-box {
+            background: #f9f8f5;
+            border-left: 3px solid #0F6E56;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .decision-box {
+                background: #252421;
+                border-left-color: #5DCAA5;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            padding: 2.5rem 0 3rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .footer {
+                border-top-color: rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        .footer p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .footer p {
+                color: #aaa;
+            }
+        }
+
+        .footer-link {
+            display: inline-block;
+            margin: 0 0.75rem;
+            color: #0F6E56;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .footer-link {
+                color: #5DCAA5;
+            }
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(0, 0, 0, 0.06);
+            margin: 1.25rem 0;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .divider {
+                background: rgba(255, 255, 255, 0.06);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>Mansi</h1>
+            <div class="role">AI Product Manager</div>
+            <p class="positioning">I identify where products fragment across multiple tools and design unified solutions. I think end-to-end, prioritize ruthlessly, and move fast with small teams.</p>
+        </div>
+
+        <!-- Case Studies -->
+        <div class="cases-section">
+            <!-- Unscript AI -->
+            <div class="case-grid">
+                <div class="case-header" onclick="toggleCase('unscript')">
+                    <div class="case-header-content">
+                        <h3>Unscript AI</h3>
+                        <div class="meta">Associate PM • 0-to-1 AI Video Generation</div>
+                    </div>
+                    <div class="expand-icon" id="icon-unscript">+</div>
+                </div>
+
+                <div id="unscript" class="case-detail">
+                    <div class="section">
+                        <div class="section-label">The Problem</div>
+                        <div class="section-content">
+                            Video creators need multiple subscriptions to generate AI videos: Heygen for avatars, Synthesia for scene composition, plus manual editing. No single tool does end-to-end video generation. The result: expensive, fragmented, and requires in-house editing teams.
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-label">What I Owned</div>
+                        <div class="bullet-point">Full product lifecycle: market research, user discovery, PRD, backlog management, sprint planning, wireframes, flows, acceptance criteria, stakeholder management</div>
+                        <div class="bullet-point">Led 5-person team: 2 backend engineers, 2 AI engineers, 1 UX designer (reported to founder)</div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-label">The Key Decision: Avatar-First</div>
+                        <div class="decision-box">
+                            <strong>Hypothesis:</strong> If avatar quality is poor, users won't proceed to scene generation or video creation. Avatar is the bottleneck, not downstream features.
+                        </div>
+                        <div class="section-content">
+                            I validated this with user research and presented the reasoning to the dev team. The decision was to prioritize avatar creation first, even though it delayed other features. This meant saying no to rapid feature expansion and focusing on quality gates.
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-label">What We Shipped</div>
+                        <div class="bullet-point">Avatar creation flow with quality fine-tuning (product images from 10+ angles)</div>
+                        <div class="bullet-point">Scene generation workflow (layout, positioning, branding)</div>
+                        <div class="bullet-point">Image-to-video pipeline with product integration</div>
+                        <div class="bullet-point">Final video stitching (end-to-end flow)</div>
+                        <div class="bullet-point">Planned but not shipped: Script, voiceover, transcription</div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-label">Proof Points</div>
+                        <div class="bullet-point"><strong>25% reduction in time-to-complete features</strong> through workflow standardization and sprint streamlining (before: ad-hoc, after: structured)</div>
+                        <div class="bullet-point">Led cross-functional team without direct reports (influence-based leadership)</div>
+                        <div class="bullet-point">Mastered AI domain rapidly (new to me; learned embeddings, fine-tuning, API integration)</div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-label">What I Learned</div>
+                        <div class="section-content">
+                            Not every product ships. Despite solid product thinking and team execution, the founder pivoted before launch. This taught me that not every decision is yours to make, and context matters more than the quality of your work sometimes. What remains: evidence that I can think through complex 0-to-1 problems, reason about prioritization, and execute with small teams.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- AI Interview Buddy -->
+            <div class="case-grid">
+                <div class="case-header" onclick="toggleCase('aibuddy')">
+                    <div class="case-header-content">
+                        <h3>AI Interview Buddy</h3>
+                        <div class="meta">Founder • Voice-First Mock Interview Platform</div>
+                    </div>
+                    <div class="expand-icon" id="icon-aibuddy">+</div>
+                </div>
+
+                <div id="aibuddy" class="case-detail">
+                    <div class="section">
+                        <div class="section-label">Why I Built It</div>
+                        <div class="section-content">
+                            I've been there: transitioning into PM, not knowing where to start, how to prepare, or how to reduce interview anxiety. Generic AI mock interview tools exist, but none are designed for PM career changers. I saw the gap from personal experience.
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-label">Validation (10-15 Users)</div>
+                        <div class="bullet-point">Common pain: "I don't know where to start" + "How do I actually prepare for product thinking?"</div>
+                        <div class="bullet-point">Existing solution gap: Mock interview tools are generic (can't teach PM-specific thinking)</div>
+                        <div class="bullet-point">Anxiety driver: Real interviews feel unpredictable; they need practice with natural conversation flow, not rigid Q&A</div>
+                        <div class="bullet-point">Validated need: "I need feedback on my thinking, not just my answers"</div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-label">Hypothesis</div>
+                        <div class="decision-box">
+                            Natural, flowing conversation + adaptive questions that respond to user answers = reduced anxiety + better prep + confidence for real interviews.
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-label">Current State (MVP)</div>
+                        <div class="bullet-point">Built prototype with Lovable (full interview journey mapped)</div>
+                        <div class="bullet-point">What works: Interface, flow, user journey feel natural</div>
+                        <div class="bullet-point">What doesn't: Transcription is broken (API misses words → feedback loop breaks); AI voice is robotic</div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-label">The Blocker (And My Thinking)</div>
+                        <div class="decision-box">
+                            <strong>Problem:</strong> Lovable free tier can't modify APIs. Current transcription API misses words, breaking feedback. I can't user test until this is fixed (no feedback = broken hypothesis).
+                        </div>
+                        <div class="section-content">
+                            <strong>Constraint:</strong> Jobless, no funds for paid APIs or Lovable pro.
+                            <br><br>
+                            <strong>Strategic response:</strong> This isn't a reason to stop. It's a reason to sequence differently. Fix transcription first, then voice quality, then LLM adaptation. Don't test with users until the core experience works.
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-label">Roadmap (What's Next)</div>
+                        <div class="bullet-point">Phase 1: Integrate Whisper API (real-time transcription) — unblocks feedback loop</div>
+                        <div class="bullet-point">Phase 2: ElevenLabs for natural voice (replaces robotic voice) — improves UX</div>
+                        <div class="bullet-point">Phase 3: LLM adaptation (questions respond to user answers) — core hypothesis</div>
+                        <div class="bullet-point">Then: Ship and test with actual PM career changers</div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-label">What This Shows</div>
+                        <div class="bullet-point">Problem identification from personal experience (not guessing)</div>
+                        <div class="bullet-point">Validation through user interviews (10-15 data points)</div>
+                        <div class="bullet-point">Prototyping under constraint (Lovable free tier; creative approach)</div>
+                        <div class="bullet-point">Strategic roadmapping (sequence by technical dependency, not by "cool factor")</div>
+                        <div class="bullet-point">Technical awareness (knows Whisper API, ElevenLabs, LLM adaptation; understands blocker vs. preference)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Let's talk about AI, product thinking, and building tools people actually want.</p>
+            <div>
+                <a href="https://www.linkedin.com/in/hastirmansi/" class="footer-link">LinkedIn</a>
+                <span style="color: #ccc;">•</span>
+                <a href="mailto:hello@example.com" class="footer-link">Email</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCase(caseId) {
+            const detail = document.getElementById(caseId);
+            const icon = document.getElementById(`icon-${caseId}`);
+            
+            if (detail.classList.contains('active')) {
+                detail.classList.remove('active');
+                icon.textContent = '+';
+            } else {
+                detail.classList.add('active');
+                icon.textContent = '−';
+            }
+        }
+    </script>
+</body>
+</html>
